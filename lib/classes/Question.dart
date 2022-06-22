@@ -48,13 +48,13 @@ List data = [
     "id": 5,
     "question": "Computers calculate numbers in what mode?",
     "options": ['Decimal', 'Octal', 'Binary', 'None of the above'],
-    "index_of_answer": 1,
+    "index_of_answer": 2,
   },
   {
     "id": 6,
     "question": "The speed of your net access is defined in terms of...",
     "options": ['RAM', 'MHz', 'Kbps', 'Megabytes'],
-    "index_of_answer": 1,
+    "index_of_answer": 2,
   },
   {
     "id": 7,
@@ -71,7 +71,7 @@ List data = [
   {
     "id": 9,
     "question": "Which of the following is not a programming language?",
-    "options": ['Fltter', 'Python', 'Dart', 'Java'],
+    "options": ['Flutter', 'Python', 'Dart', 'Java'],
     "index_of_answer": 0,
   },
   {

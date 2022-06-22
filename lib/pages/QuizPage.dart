@@ -50,24 +50,27 @@ class QuizPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text.rich(
-                      TextSpan(
-                          text: "Question 1",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              ?.copyWith(color: Colors.purpleAccent),
-                          children: [
-                            TextSpan(
-                              text: "/10",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  ?.copyWith(
-                                      color: Colors.purpleAccent,
-                                      fontWeight: FontWeight.bold),
-                            ),
-                          ]),
+                    child: Obx(
+                      () => Text.rich(
+                        TextSpan(
+                            text:
+                                "Question ${questionController.questionNumber}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                ?.copyWith(color: Colors.purpleAccent),
+                            children: [
+                              TextSpan(
+                                text: "/${questionController.questions.length}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5
+                                    ?.copyWith(
+                                        color: Colors.purpleAccent,
+                                        fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                      ),
                     ),
                   ),
                   Divider(thickness: 3),
@@ -76,6 +79,10 @@ class QuizPage extends StatelessWidget {
                   //Takes the whole height of the screen bottom
                   Expanded(
                     child: PageView.builder(
+                        physics:
+                            NeverScrollableScrollPhysics(), //Prevents scrolling to next question.
+                        controller: questionController.pageController,
+                        onPageChanged: questionController.qNumberCount,
                         itemCount: questionController.questions.length,
                         itemBuilder: ((context, index) => QuestionCard(
                               question: questionController.questions[

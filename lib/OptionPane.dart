@@ -21,13 +21,25 @@ class OptionPane extends StatelessWidget {
           Color answerColor() {
             if (qController.isAnswered) {
               if (index == qController.correctAnswer) {
-                return Colors.greenAccent;
+                return Colors.purpleAccent;
               } else if (index == qController.selecAnswer &&
                   qController.selecAnswer != qController.correctAnswer) {
                 return Color.fromARGB(255, 151, 15, 15);
               }
             }
-            return Color.fromARGB(255, 167, 99, 179);
+            return Colors.grey;
+          }
+
+          Icon rightIcon() {
+            if (qController.isAnswered) {
+              if (index == qController.correctAnswer) {
+                return Icon(Icons.done);
+              } else if (index == qController.selecAnswer &&
+                  qController.selecAnswer != qController.correctAnswer) {
+                return Icon(Icons.close);
+              }
+            }
+            return Icon(Icons.do_not_touch_sharp);
           }
 
           return InkWell(
@@ -36,6 +48,7 @@ class OptionPane extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
+                //color: answerColor(),
                 border: Border.all(color: answerColor()),
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -43,18 +56,19 @@ class OptionPane extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${index + 1}. $text",
+                    "${index + 1}) $text",
                     style: const TextStyle(fontSize: 20),
                   ),
                   Container(
                     height: 26,
                     width: 26,
                     decoration: BoxDecoration(
-                        color: answerColor() == Colors.purpleAccent
-                            ? Color.fromARGB(0, 243, 235, 235)
+                        color: answerColor() == Colors.grey
+                            ? Colors.transparent
                             : answerColor(),
                         borderRadius: BorderRadius.circular(50),
                         border: Border.all(color: answerColor())),
+                    child: rightIcon(),
                   ),
                 ],
               ),
