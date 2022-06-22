@@ -4,6 +4,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/classes/Question.dart';
+import 'package:quiz_app/pages/ScorePage.dart';
 
 //Animating the Progress Bar using GetxController
 
@@ -12,6 +13,9 @@ class QuestionController extends GetxController
   late AnimationController _animationController;
   late Animation _animation;
   Animation get animation => _animation;
+
+  late PageController _pageController;
+  PageController get pageController => this._pageController;
 
   // ignore: prefer_final_fields, unused_field
   List<Question> _questions = data
@@ -42,17 +46,47 @@ class QuestionController extends GetxController
   RxInt get questionNumber => this._questionNumber;
 
   @override
+  //Implementation of Progress Bar animation
   void onInit() {
     // TODO: implement onInit
     _animationController =
-        AnimationController(duration: const Duration(seconds: 60), vsync: this);
+        AnimationController(duration: const Duration(seconds: 10), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
         update(); //Works like setstate.
       });
     super.onInit();
 
-    _animationController.forward(); //Starts the animation
+    _animationController
+        .forward()
+        .whenComplete(() => nextQuestion()); //Starts the animation
+
+    _pageController = PageController(); //Page controller Initialized.
+  }
+
+//Closure of controller
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    _animationController.dispose();
+    _pageController.dispose();
+  }
+
+  //Function for moving to the next question
+  void nextQuestion() {
+    if (_questionNumber.value != _questions.length) {
+      _isAnswered = false;
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 800), curve: Curves.ease);
+
+      _animationController.reset(); //Reset the counter
+      _animationController
+          .forward()
+          .whenComplete(() => nextQuestion()); //Starts the counter again.
+    } else {
+      Get.to(ScorePage());
+    }
   }
 
   //Function for checking the answer
@@ -66,5 +100,15 @@ class QuestionController extends GetxController
     }
     _animationController.stop();
     update();
+
+    //Controls the time the page switches to the next question
+    Future.delayed(const Duration(seconds: 1), () {
+      nextQuestion();
+    });
+  }
+
+  //Function to count the question number
+  void qNumberCount(int index) {
+    _questionNumber.value = index + 1;
   }
 }

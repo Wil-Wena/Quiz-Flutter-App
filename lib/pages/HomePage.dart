@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quiz_app/pages/QuizPage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,7 +60,9 @@ class HomePage extends StatelessWidget {
                       primary: Colors.purpleAccent,
                       minimumSize: const Size(500, 50),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(QuizPage());
+                    },
                     child: const Text("Let's start the quiz"),
                   ),
                 ),
