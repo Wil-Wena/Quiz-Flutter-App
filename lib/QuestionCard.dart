@@ -23,26 +23,28 @@ class QuestionCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Column(
-        children: [
-          Text(
-            question.question,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.copyWith(color: Colors.black),
-          ),
-          SizedBox(height: 10),
-          //Options container area
-          ...List.generate(
-              question.options.length,
-              (index) => OptionPane(
-                  text: question.options[index],
-                  index: index,
-                  press: () {
-                    _controller.checkAnswer(question, index);
-                  }))
-        ],
+      child: Expanded(
+        child: Column(
+          children: [
+            Text(
+              question.question,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: Colors.black),
+            ),
+            SizedBox(height: 10),
+            //Options container area
+            ...List.generate(
+                question.options.length,
+                (index) => OptionPane(
+                    text: question.options[index],
+                    index: index,
+                    press: () {
+                      _controller.checkAnswer(question, index);
+                    }))
+          ],
+        ),
       ),
     );
   }
