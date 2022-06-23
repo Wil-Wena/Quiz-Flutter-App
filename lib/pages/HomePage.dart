@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final myController = TextEditingController();
+  bool validate = false;
 
   @override
   void dispose() {
@@ -41,25 +42,32 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Spacer(),
+                Center(
+                  child: Image.asset(
+                    'assets/pngwing.com (6).png',
+                    height: 200,
+                    width: 300,
+                  ),
+                ),
                 Text(
-                  "Let's Play",
+                  "Let's have Fun!",
                   style: Theme.of(context).textTheme.headline4?.copyWith(
-                      color: Colors.purpleAccent, fontWeight: FontWeight.bold),
+                      color: Colors.purpleAccent,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
                 ),
                 const Text(
-                  "Enter your instructions below",
-                  style: TextStyle(color: Colors.purpleAccent),
+                  "Enter your name below",
+                  style: TextStyle(color: Colors.purpleAccent, fontSize: 20),
                 ),
                 const Spacer(
                   flex: 1,
                 ),
                 TextField(
                   controller: myController,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                      //filled: true,
-                      // fillColor: Color.fromARGB(255, 93, 128, 156),
+                      errorText: validate ? "Enter your name JON!!" : null,
                       hintText: "Full Name",
                       hintStyle: TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
@@ -81,7 +89,12 @@ class _HomePageState extends State<HomePage> {
                       minimumSize: const Size(500, 50),
                     ),
                     onPressed: () {
-                      Get.to(QuizPage());
+                      setState(() {
+                        if (validate = myController.text.isEmpty) {
+                        } else {
+                          Get.to(QuizPage());
+                        }
+                      });
                     },
                     child: const Text("Let's start the quiz"),
                   ),
