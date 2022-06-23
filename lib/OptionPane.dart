@@ -55,9 +55,12 @@ class OptionPane extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "${index + 1}) $text",
-                    style: const TextStyle(fontSize: 20),
+                  Expanded(
+                    //Takes care of the answer space
+                    child: Text(
+                      "${index + 1}) $text",
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                   Container(
                     height: 26,

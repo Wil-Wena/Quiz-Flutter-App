@@ -3,18 +3,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/pages/QuizPage.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(myController.text);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Image.asset(
-            "assets/pngtree-starry.jpg",
-            fit: BoxFit.fill,
+          Container(
+            height: double.infinity,
+            width: double.maxFinite,
+            child: Image.asset(
+              "assets/orsrc43545.jpg",
+              fit: BoxFit.fill,
+            ),
           ),
           SafeArea(
               child: Padding(
@@ -35,7 +54,8 @@ class HomePage extends StatelessWidget {
                 const Spacer(
                   flex: 1,
                 ),
-                const TextField(
+                TextField(
+                  controller: myController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       //filled: true,
