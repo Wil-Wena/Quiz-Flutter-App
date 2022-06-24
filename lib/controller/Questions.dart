@@ -111,4 +111,15 @@ class QuestionController extends GetxController
   void qNumberCount(int index) {
     _questionNumber.value = index + 1;
   }
+
+  String funCheck() {
+    if (numOfCorrectAnswers == questions.length) {
+      return "Wab3n herrh! Congrats!!!";
+    } else if (numOfCorrectAnswers == questions.length / 2) {
+      return "You had not too much fun";
+    } else if (numOfCorrectAnswers < questions.length / 2) {
+      return "You had litte fun";
+    }
+    return "You had fun";
+  }
 }
