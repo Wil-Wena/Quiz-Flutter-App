@@ -53,7 +53,7 @@ class QuestionController extends GetxController
         AnimationController(duration: const Duration(seconds: 10), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
-        update(); //Works like setstate.
+        update(); //Works like setstate. Ressts the progress bar for each question
       });
     super.onInit();
 
@@ -112,6 +112,7 @@ class QuestionController extends GetxController
     _questionNumber.value = index + 1;
   }
 
+  //Function for scorePage
   String funCheck() {
     if (numOfCorrectAnswers == questions.length) {
       return "Wab3n herrh! Congrats!!!";

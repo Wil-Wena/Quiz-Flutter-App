@@ -40,7 +40,8 @@ class ProgressBar extends StatelessWidget {
                 child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // Space given between the time and the clock image
                 children: [
                   Text(
                     "${(controller.animation.value * 10).round()} seconds",
