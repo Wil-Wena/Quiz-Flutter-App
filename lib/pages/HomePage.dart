@@ -22,13 +22,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(myController.text);
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Container(
+          //Image
+          SizedBox(
             height: double.infinity,
             width: double.maxFinite,
             child: Image.asset(
@@ -36,12 +35,15 @@ class _HomePageState extends State<HomePage> {
               fit: BoxFit.fill,
             ),
           ),
+
+          //Move the body to a safe zone
           SafeArea(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //Quiz time Image
                 Center(
                   child: Image.asset(
                     'assets/pngwing.com (6).png',
@@ -49,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                     width: 300,
                   ),
                 ),
+                //First Text
                 Text(
                   "Let's have Fun!",
                   style: Theme.of(context).textTheme.headline4?.copyWith(
@@ -56,24 +59,31 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic),
                 ),
+
+                //Second Text
                 const Text(
                   "Enter your name below",
                   style: TextStyle(color: Colors.purpleAccent, fontSize: 20),
                 ),
-                const Spacer(
-                  flex: 1,
-                ),
+
+                const Spacer(flex: 1), //Space between the text and TextField
+
+                //TextField for name entry
                 TextField(
                   controller: myController,
+                  autocorrect: true,
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       errorText: validate ? "Enter your name JON!!" : null,
+                      errorStyle: TextStyle(color: Colors.white),
                       hintText: "Full Name",
-                      hintStyle: TextStyle(color: Colors.white),
-                      border: OutlineInputBorder(
+                      hintStyle: const TextStyle(color: Colors.white),
+                      border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)))),
                 ),
                 const Spacer(),
+
+                //Let's have have button
                 Container(
                   decoration: BoxDecoration(
                       gradient: const LinearGradient(colors: [
@@ -96,12 +106,10 @@ class _HomePageState extends State<HomePage> {
                         }
                       });
                     },
-                    child: const Text("Let's start the quiz"),
+                    child: const Text("Start Quiz"),
                   ),
                 ),
-                const Spacer(
-                  flex: 2,
-                ),
+                const Spacer(flex: 2),
               ],
             ),
           ))

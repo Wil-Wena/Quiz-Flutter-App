@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/QuestionCard.dart';
 import 'package:quiz_app/controller/Questions.dart';
 import 'ProgressBar.dart';
-import 'package:quiz_app/classes/Question.dart';
 
 class QuizPage extends StatelessWidget {
   const QuizPage({Key? key}) : super(key: key);
@@ -45,9 +44,7 @@ class QuizPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: ProgressBar(),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Obx(
@@ -94,7 +91,7 @@ class QuizPage extends StatelessWidget {
                     child: Text(
                       "Created by: Aballey Wilson",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
