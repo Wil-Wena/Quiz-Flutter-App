@@ -8,6 +8,6 @@ import 'pages/ProgressBar.dart';
 void main() {
   runApp(const GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    home: QuizPage(),
+    home: HomePage(),
   ));
 }

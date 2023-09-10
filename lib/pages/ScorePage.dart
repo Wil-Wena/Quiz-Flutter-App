@@ -1,7 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/classes/ScoreAnimate.dart';
 import 'package:quiz_app/controller/Questions.dart';
+import 'package:quiz_app/pages/HomePage.dart';
 
 class ScorePage extends StatefulWidget {
   const ScorePage({Key? key}) : super(key: key);
@@ -45,6 +48,13 @@ class _ScorePageState extends State<ScorePage> {
                           ?.copyWith(color: Colors.purpleAccent),
                     ),
                   )),
+                  FlatButton(
+                    onPressed: () {
+                      Get.to(HomePage());
+                    },
+                    child: Text("Retry Quiz"),
+                    color: Colors.white,
+                  )
                 ]),
           ),
         ],

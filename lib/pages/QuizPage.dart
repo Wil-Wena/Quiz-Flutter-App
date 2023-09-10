@@ -12,7 +12,7 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController questionController = Get.put(
-        QuestionController()); //To access our controller from Question Controller in the controller folder.
+        QuestionController()); //To inject our controller from Question Controller in the controller folder.
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar:
